@@ -7,8 +7,8 @@
   <style>
     :root {
       --primary-color: #ECE6E4;
-      --accent-1: #D19595;
-      --accent-2: #708BF3;
+      --accent-1: #C26E6E;
+      --accent-2: #4B6BE0 ;
       --accent-3: #DAAFDF;
       --primary-font: 'Open Sauce One', 'Open Sauce Two', 'Open Sauce Sans', sans-serif;
     }
@@ -29,8 +29,9 @@
     .header {
       padding: 1.5rem 2rem;
       display: flex;
-      justify-content: space-between;
+      flex-direction: column;
       align-items: center;
+      gap: 1.5rem;
       background-color: var(--primary-color);
       position: fixed;
       width: 100%;
@@ -46,6 +47,9 @@
     }
 
     .menu-btn {
+      position: absolute;
+      right: 2rem;
+      top: 1.5rem;
       width: 30px;
       height: 24px;
       display: flex;
@@ -159,6 +163,7 @@
         display: flex;
         gap: 2rem;
         align-items: center;
+        justify-content: center;
       }
 
       .nav-links li {
@@ -210,7 +215,7 @@
 </head>
 <body>
   <header class="header">
-    <div class="logo">Sammy Garcia</div>
+    <div class="logo">Samantha Garcia</div>
     <div class="menu-btn" onclick="toggleMenu()">
       <span></span>
       <span></span>
@@ -221,8 +226,6 @@
         <li><a href="#">Marketing</a></li>
         <li><a href="#">Design</a></li>
         <li><a href="#">Music</a></li>
-        <li><a href="#">Resume</a></li>
-        <li><a href="#">Contact</a></li>
       </ul>
     </nav>
   </header>
