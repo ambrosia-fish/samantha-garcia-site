@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="https://fonts.cdnfonts.com/css/open-sauce-one" rel="stylesheet">
+  <link href="https://fonts.cdnfonts.com/css/tenor-sans" rel="stylesheet">
+  <link href="https://fonts.cdnfonts.com/css/amoera-2" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #E8E0DB; /* Slightly warmer beige */
+      --accent-1: #C26E6E;      /* Darker pink for better contrast */
+      --accent-2: #4B6BE0;      /* Darker blue for better contrast */
+      --accent-3: #DAAFDF;
+      --primary-font: 'Open Sauce One', 'Open Sauce Two', 'Open Sauce Sans', sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: var(--primary-font);
+    }
+
+    body {
+      background-color: var(--primary-color);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .header {
+      padding: 1.5rem 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+      background-color: var(--primary-color);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo {
+      font-family: 'amoera', sans-serif;
+      font-size: 1.75rem;
+      color: var(--accent-1);
+      letter-spacing: 0.02em;
+    }
+
+    .nav-menu {
+      width: auto;
+      padding: 0;
+      background-color: transparent;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .nav-links li a {
+      font-family: 'Tenor Sans', sans-serif;
+      color: var(--accent-1);
+      text-decoration: none;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      padding: 0.5rem 1rem;
+      border-radius: 0.375rem;
+      letter-spacing: 0.1em;
+    }
+
+    .nav-links li a:hover {
+      color: var(--accent-2);
+    }
+
+    .main-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      min-height: 100vh;
+      padding: 2rem;
+    }
+
+    .coming-soon {
+      font-family: 'amoera', sans-serif;
+      font-size: 5rem;
+      letter-spacing: 0.2em;
+      color: var(--accent-1);
+      text-transform: uppercase;
+      position: relative;
+      animation: strongGlow 3s ease-in-out infinite alternate;
+    }
+
+    @keyframes strongGlow {
+      from {
+        text-shadow: 
+          0 0 20px rgba(75, 107, 224, 0.3),
+          0 0 40px rgba(75, 107, 224, 0.3),
+          0 0 60px rgba(75, 107, 224, 0.3);
+      }
+      to {
+        text-shadow: 
+          0 0 40px rgba(75, 107, 224, 0.7),
+          0 0 80px rgba(75, 107, 224, 0.7),
+          0 0 120px rgba(75, 107, 224, 0.7);
+      }
+    }
+
+    /* Mobile styles */
+    @media (max-width: 767px) {
+      .header {
+        padding: 1rem;
+      }
+
+      .nav-links {
+        gap: 1rem;
+      }
+
+      .nav-links li a {
+        font-size: 0.9rem;
+        padding: 0.4rem 0.8rem;
+      }
+
+      .coming-soon {
+        font-size: 2.5rem;
+      }
+
+      .logo {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="logo">Samantha Garcia</div>
+    <nav class="nav-menu">
+      <ul class="nav-links">
+        <li><a href="#">Marketing</a></li>
+        <li><a href="#">Design</a></li>
+        <li><a href="#">Music</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="main-content">
+    <div class="coming-soon">Coming Soon</div>
+  </main>
+</body>
+</html>
