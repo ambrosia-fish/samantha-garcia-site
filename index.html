@@ -36,7 +36,7 @@
       --space-xl: 3rem;
       
       /* Transitions */
-      --transition-normal: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
       /* Default theme */
       --current-primary: var(--home-primary);
@@ -130,10 +130,6 @@
     .nav-link:focus,
     .nav-link.active {
       opacity: 1;
-      text-shadow: 
-        0 0 10px var(--current-accent),
-        0 0 20px var(--current-accent),
-        0 0 30px var(--current-accent);
     }
 
     .main-content {
@@ -147,6 +143,12 @@
     .hero {
       text-align: center;
       max-width: 800px;
+      opacity: 1;
+      transition: opacity var(--transition-normal);
+    }
+
+    .fade-out {
+      opacity: 0;
     }
 
     .coming-soon {
@@ -241,35 +243,46 @@
       link.addEventListener('click', (e) => {
         e.preventDefault();
         
-        // Remove previous active states
-        document.querySelectorAll('.nav-link').forEach(el => {
-          el.classList.remove('active');
-        });
-        
-        // Add active state
-        e.target.classList.add('active');
-        
-        // Update theme colors
+        // Get the target URL and theme
+        const url = e.target.href;
         const theme = e.target.dataset.theme;
-        document.documentElement.style.setProperty('--current-primary', `var(--${theme}-primary)`);
-        document.documentElement.style.setProperty('--current-accent', `var(--${theme}-accent)`);
         
-        // Navigate after transition
+        // Fade out content first
+        const hero = document.querySelector('.hero');
+        hero.classList.add('fade-out');
+        
+        // After content fades, update colors and navigate
         setTimeout(() => {
-          window.location.href = e.target.href;
-        }, 600); // Match transition duration
+          // Update theme colors
+          document.documentElement.style.setProperty('--current-primary', `var(--${theme}-primary)`);
+          document.documentElement.style.setProperty('--current-accent', `var(--${theme}-accent)`);
+          
+          // Navigate to new page
+          setTimeout(() => {
+            window.location.href = url;
+          }, 300);
+        }, 300);
       });
     });
 
     // Reset to home state when clicking logo
     document.querySelector('.logo').addEventListener('click', (e) => {
       e.preventDefault();
-      document.querySelectorAll('.nav-link').forEach(el => {
-        el.classList.remove('active');
-      });
-      document.documentElement.style.setProperty('--current-primary', 'var(--home-primary)');
-      document.documentElement.style.setProperty('--current-accent', 'var(--home-accent)');
-      window.location.href = e.target.href;
+      
+      // Fade out content
+      const hero = document.querySelector('.hero');
+      hero.classList.add('fade-out');
+      
+      setTimeout(() => {
+        // Reset colors
+        document.documentElement.style.setProperty('--current-primary', 'var(--home-primary)');
+        document.documentElement.style.setProperty('--current-accent', 'var(--home-accent)');
+        
+        // Navigate home
+        setTimeout(() => {
+          window.location.href = e.target.href;
+        }, 300);
+      }, 300);
     });
   </script>
 </body>
