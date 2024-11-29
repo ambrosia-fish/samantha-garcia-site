@@ -65,6 +65,16 @@
       transition: background-color var(--transition-normal);
     }
 
+    /* Hide content initially until fully loaded */
+    body.loading * {
+      opacity: 0;
+    }
+
+    body.loaded * {
+      opacity: 1;
+      transition: opacity var(--transition-normal);
+    }
+
     .skip-link {
       background: var(--current-accent);
       color: var(--current-primary);
@@ -119,11 +129,11 @@
       color: var(--current-accent);
       text-decoration: none;
       font-size: clamp(1rem, 2vw, 1.25rem);
-      transition: all var(--transition-normal);
       padding: var(--space-xs) var(--space-sm);
       border-radius: 0.375rem;
       letter-spacing: 0.1em;
       opacity: 0.7;
+      transition: opacity var(--transition-normal);
     }
 
     .nav-link:hover,
@@ -213,7 +223,7 @@
     }
   </style>
 </head>
-<body>
+<body class="loading">
   <a href="#main" class="skip-link">Skip to main content</a>
   
   <header class="header" role="banner">
@@ -239,6 +249,12 @@
   </main>
 
   <script>
+    // Wait for all content to load before showing anything
+    window.addEventListener('load', () => {
+      document.body.classList.remove('loading');
+      document.body.classList.add('loaded');
+    });
+
     document.querySelectorAll('.nav-link').forEach(link => {
       link.addEventListener('click', (e) => {
         e.preventDefault();
