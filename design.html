@@ -8,16 +8,8 @@
   <link href="https://fonts.cdnfonts.com/css/tenor-sans" rel="stylesheet">
   <link href="https://fonts.cdnfonts.com/css/amoera-2" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
+  <link href="css/portfolio-layout.css" rel="stylesheet">
   <title>Design Portfolio - Samantha Garcia</title>
-  <style>
-    .section-title {
-      font-family: var(--font-heading);
-      font-size: clamp(2rem, 5vw, 3rem);
-      text-align: center;
-      margin-bottom: var(--space-xl);
-      width: 100%;
-    }
-  </style>
 </head>
 <body>
   <a href="#main" class="skip-link">Skip to main content</a>
@@ -40,40 +32,75 @@
   <main id="main" class="main-content" role="main">
     <h1 class="section-title">Design Portfolio</h1>
     <div class="portfolio-grid">
-      <article class="portfolio-item">
+      <article class="portfolio-item" data-title="The Sophies Album Artwork" data-description="Abstract album artwork featuring dynamic color blending and expressive brushwork.">
         <img src="assets/design/sophies-cover.png" alt="The Sophies Album Artwork - Abstract Design" loading="lazy">
-        <div class="portfolio-item-overlay">
-          <h2 class="portfolio-item-title">The Sophies Album Artwork - Abstract Design</h2>
-          <p class="portfolio-item-description">Abstract album artwork featuring dynamic color blending and expressive brushwork.</p>
-        </div>
       </article>
 
-      <article class="portfolio-item">
+      <article class="portfolio-item" data-title="Eagle Death Album Artwork" data-description="Album artwork design featuring stark imagery and bold composition.">
         <img src="assets/design/eagle-death.png" alt="Eagle Death Album Artwork" loading="lazy">
-        <div class="portfolio-item-overlay">
-          <h2 class="portfolio-item-title">Eagle Death Album Artwork</h2>
-          <p class="portfolio-item-description">Album artwork design featuring stark imagery and bold composition.</p>
-        </div>
       </article>
 
-      <article class="portfolio-item">
+      <article class="portfolio-item" data-title="Memorial Program Design" data-description="Elegant memorial program featuring delicate floral elements and thoughtful typography.">
         <img src="assets/design/blooms-obit.png" alt="Memorial Program Design" loading="lazy">
-        <div class="portfolio-item-overlay">
-          <h2 class="portfolio-item-title">Memorial Program Design</h2>
-          <p class="portfolio-item-description">Elegant memorial program featuring delicate floral elements.</p>
-        </div>
       </article>
 
-      <article class="portfolio-item">
+      <article class="portfolio-item" data-title="Anniversary Celebration Invitation" data-description="Modern beach-themed celebration invitation capturing a moment of joy.">
         <img src="assets/design/vinny-zayla.png" alt="Anniversary Celebration Invitation" loading="lazy">
-        <div class="portfolio-item-overlay">
-          <h2 class="portfolio-item-title">Anniversary Celebration Invitation</h2>
-          <p class="portfolio-item-description">Modern beach-themed celebration invitation.</p>
-        </div>
       </article>
     </div>
   </main>
 
+  <!-- Modal -->
+  <div class="modal" id="portfolio-modal">
+    <div class="modal-content">
+      <button class="modal-close" aria-label="Close modal">×</button>
+      <img class="modal-image" src="" alt="">
+      <div class="modal-info">
+        <h2 class="modal-title"></h2>
+        <p class="modal-description"></p>
+      </div>
+    </div>
+  </div>
+
   <script src="js/main.js"></script>
+  <script>
+    // Modal functionality
+    const modal = document.getElementById('portfolio-modal');
+    const modalImage = modal.querySelector('.modal-image');
+    const modalTitle = modal.querySelector('.modal-title');
+    const modalDescription = modal.querySelector('.modal-description');
+    const modalClose = modal.querySelector('.modal-close');
+
+    // Add click handlers to portfolio items
+    document.querySelectorAll('.portfolio-item').forEach(item => {
+      item.addEventListener('click', () => {
+        const img = item.querySelector('img');
+        modalImage.src = img.src;
+        modalImage.alt = img.alt;
+        modalTitle.textContent = item.dataset.title;
+        modalDescription.textContent = item.dataset.description;
+        modal.classList.add('active');
+      });
+    });
+
+    // Close modal
+    modalClose.addEventListener('click', () => {
+      modal.classList.remove('active');
+    });
+
+    // Close modal on outside click
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.classList.remove('active');
+      }
+    });
+
+    // Close modal on escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('active')) {
+        modal.classList.remove('active');
+      }
+    });
+  </script>
 </body>
 </html>
