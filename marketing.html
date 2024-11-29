@@ -8,6 +8,7 @@
   <link href="https://fonts.cdnfonts.com/css/tenor-sans" rel="stylesheet">
   <link href="https://fonts.cdnfonts.com/css/amoera-2" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
+  <link href="css/portfolio-layout.css" rel="stylesheet">
   <title>Marketing Portfolio - Samantha Garcia</title>
 </head>
 <body>
@@ -30,74 +31,87 @@
 
   <main id="main" class="main-content" role="main">
     <h1 class="section-title">Marketing Portfolio</h1>
+    <div class="portfolio-grid">
+      <!-- Digital Marketing Items -->
+      <article class="portfolio-item" data-title="Social Media Campaign" data-description="Brand development and social media strategy for Blackbelt Kombucha.">
+        <img src="assets/marketing/digital/black-belt-kombucha.png" alt="Blackbelt Kombucha Digital Marketing" loading="lazy">
+      </article>
 
-    <!-- Digital Marketing Section -->
-    <section class="portfolio-section">
-      <h2 class="portfolio-section-title">Digital Marketing</h2>
-      <div class="portfolio-grid">
-        <article class="portfolio-item">
-          <img src="assets/marketing/digital/black-belt-kombucha.png" alt="Blackbelt Kombucha Digital Marketing" loading="lazy">
-          <div class="portfolio-item-overlay">
-            <h3 class="portfolio-item-title">Social Media Campaign</h3>
-            <p class="portfolio-item-description">Brand development and social media strategy for Blackbelt Kombucha.</p>
-          </div>
-        </article>
+      <article class="portfolio-item" data-title="App Design Marketing" data-description="Mobile app marketing material and mockup design.">
+        <img src="assets/marketing/digital/paid-in-full-mockup.svg" alt="Paid in Full App Mockup" loading="lazy">
+      </article>
 
-        <article class="portfolio-item">
-          <img src="assets/marketing/digital/paid-in-full-mockup.svg" alt="Paid in Full App Mockup" loading="lazy">
-          <div class="portfolio-item-overlay">
-            <h3 class="portfolio-item-title">App Design Marketing</h3>
-            <p class="portfolio-item-description">Mobile app marketing material and mockup design.</p>
-          </div>
-        </article>
-      </div>
-    </section>
+      <!-- Print Marketing Items -->
+      <article class="portfolio-item" data-title="Business Card Collection" data-description="Series of premium business card designs for various clients.">
+        <img src="assets/marketing/print/business-cards.png" alt="Business Card Designs" loading="lazy">
+      </article>
 
-    <!-- Print Marketing Section -->
-    <section class="portfolio-section">
-      <h2 class="portfolio-section-title">Print Marketing</h2>
-      <div class="portfolio-grid">
-        <article class="portfolio-item">
-          <img src="assets/marketing/print/business-cards.png" alt="Business Card Designs" loading="lazy">
-          <div class="portfolio-item-overlay">
-            <h3 class="portfolio-item-title">Business Card Collection</h3>
-            <p class="portfolio-item-description">Series of premium business card designs for various clients.</p>
-          </div>
-        </article>
+      <article class="portfolio-item" data-title="Brochure Design" data-description="Comprehensive brochure design for Lynchburg property showcase.">
+        <img src="assets/marketing/print/lynchburg-brochure.png" alt="Lynchburg Brochure Design" loading="lazy">
+      </article>
 
-        <article class="portfolio-item">
-          <img src="assets/marketing/print/lynchburg-brochure.png" alt="Lynchburg Brochure Design" loading="lazy">
-          <div class="portfolio-item-overlay">
-            <h3 class="portfolio-item-title">Brochure Design</h3>
-            <p class="portfolio-item-description">Comprehensive brochure design for Lynchburg property showcase.</p>
-          </div>
-        </article>
-      </div>
-    </section>
+      <!-- Magazine Items -->
+      <article class="portfolio-item" data-title="Haven Magazine Layout" data-description="Editorial design and layout for Haven Magazine feature spread.">
+        <img src="assets/marketing/haven-spread-1.png" alt="Haven Magazine Spread" loading="lazy">
+      </article>
 
-    <!-- Magazine Section -->
-    <section class="portfolio-section">
-      <h2 class="portfolio-section-title">Magazine Design</h2>
-      <div class="portfolio-grid">
-        <article class="portfolio-item">
-          <img src="assets/marketing/haven-spread-1.png" alt="Haven Magazine Spread" loading="lazy">
-          <div class="portfolio-item-overlay">
-            <h3 class="portfolio-item-title">Haven Magazine Layout</h3>
-            <p class="portfolio-item-description">Editorial design and layout for Haven Magazine feature spread.</p>
-          </div>
-        </article>
-
-        <article class="portfolio-item">
-          <img src="assets/marketing/haven-spread-2.png" alt="Haven Magazine Editorial" loading="lazy">
-          <div class="portfolio-item-overlay">
-            <h3 class="portfolio-item-title">Editorial Design</h3>
-            <p class="portfolio-item-description">Lifestyle section layout and typography for Haven Magazine.</p>
-          </div>
-        </article>
-      </div>
-    </section>
+      <article class="portfolio-item" data-title="Editorial Design" data-description="Lifestyle section layout and typography for Haven Magazine.">
+        <img src="assets/marketing/haven-spread-2.png" alt="Haven Magazine Editorial" loading="lazy">
+      </article>
+    </div>
   </main>
 
+  <!-- Modal -->
+  <div class="modal" id="portfolio-modal">
+    <div class="modal-content">
+      <button class="modal-close" aria-label="Close modal">×</button>
+      <img class="modal-image" src="" alt="">
+      <div class="modal-info">
+        <h2 class="modal-title"></h2>
+        <p class="modal-description"></p>
+      </div>
+    </div>
+  </div>
+
   <script src="js/main.js"></script>
+  <script>
+    // Modal functionality
+    const modal = document.getElementById('portfolio-modal');
+    const modalImage = modal.querySelector('.modal-image');
+    const modalTitle = modal.querySelector('.modal-title');
+    const modalDescription = modal.querySelector('.modal-description');
+    const modalClose = modal.querySelector('.modal-close');
+
+    // Add click handlers to portfolio items
+    document.querySelectorAll('.portfolio-item').forEach(item => {
+      item.addEventListener('click', () => {
+        const img = item.querySelector('img');
+        modalImage.src = img.src;
+        modalImage.alt = img.alt;
+        modalTitle.textContent = item.dataset.title;
+        modalDescription.textContent = item.dataset.description;
+        modal.classList.add('active');
+      });
+    });
+
+    // Close modal
+    modalClose.addEventListener('click', () => {
+      modal.classList.remove('active');
+    });
+
+    // Close modal on outside click
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.classList.remove('active');
+      }
+    });
+
+    // Close modal on escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('active')) {
+        modal.classList.remove('active');
+      }
+    });
+  </script>
 </body>
 </html>
