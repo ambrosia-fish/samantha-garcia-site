@@ -11,21 +11,27 @@
   position: absolute;
   cursor: pointer;
   transition: transform 0.3s ease;
-  /* Remove fixed width to prevent cropping */
-  width: auto;
-  height: auto;
+  background: transparent !important;
+}
+
+.portfolio-item::before,
+.portfolio-item::after {
+  display: none;
 }
 
 .portfolio-item img {
-  /* Remove box-shadow and allow natural dimensions */
   width: auto;
   height: auto;
   max-width: 500px;
   display: block;
   transition: transform 0.3s ease;
+  background: transparent;
+  padding: 0;
+  border: none;
+  box-shadow: 5px 5px 15px rgba(0,0,0,0.2);
 }
 
-/* Keep your existing random positioning but adjust vertical spacing */
+/* Random positioning for scatter effect */
 .portfolio-item:nth-child(1) {
   top: 5%;
   left: 15%;
@@ -62,4 +68,76 @@
   transform: rotate(2deg);
 }
 
-/* Rest of your modal styles remain unchanged */
+/* Modal Styles */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  backdrop-filter: blur(8px);
+}
+
+.modal.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-content {
+  max-width: 90vw;
+  max-height: 90vh;
+  position: relative;
+  transform: scale(0.8);
+  transition: transform 0.3s ease;
+}
+
+.modal.active .modal-content {
+  transform: scale(1);
+}
+
+.modal-image {
+  max-width: 100%;
+  max-height: 90vh;
+  object-fit: contain;
+}
+
+.modal-close {
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
+  padding: 10px;
+  transition: transform 0.3s ease;
+}
+
+.modal-close:hover {
+  transform: scale(1.1);
+}
+
+.modal-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+  padding: 2rem;
+  color: white;
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+}
+
+.modal-content:hover .modal-info {
+  transform: translateY(0);
+}
