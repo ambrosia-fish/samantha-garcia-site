@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Samantha Garcia - Design Professional">
+  <meta name="description" content="Samantha Garcia - Design Portfolio">
   <link href="https://fonts.cdnfonts.com/css/open-sauce-one" rel="stylesheet">
   <link href="https://fonts.cdnfonts.com/css/tenor-sans" rel="stylesheet">
   <link href="https://fonts.cdnfonts.com/css/amoera-2" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
-  <title>Design - Samantha Garcia</title>
+  <link href="css/styles.css" rel="stylesheet">
+  <title>Design Portfolio - Samantha Garcia</title>
 </head>
-<body class="design-theme">
+<body>
   <a href="#main" class="skip-link">Skip to main content</a>
   
   <header class="header" role="banner">
@@ -21,7 +21,7 @@
       <nav role="navigation" aria-label="Main navigation">
         <ul class="nav-links">
           <li><a href="marketing.html" class="nav-link">Marketing</a></li>
-          <li><a href="design.html" class="nav-link active">Design</a></li>
+          <li><a href="design.html" class="nav-link">Design</a></li>
           <li><a href="music.html" class="nav-link">Music</a></li>
         </ul>
       </nav>
@@ -29,10 +29,77 @@
   </header>
 
   <main id="main" class="main-content" role="main">
-    <div class="hero">
-      <h1 class="coming-soon">Design</h1>
-      <p class="subtitle">Design portfolio and projects coming soon.</p>
+    <h1 class="section-title">Design Portfolio</h1>
+    <div class="portfolio-grid">
+      <article class="portfolio-item" data-title="The Sophies Album Artwork" data-description="Abstract album artwork featuring dynamic color blending and expressive brushwork.">
+        <img src="assets/design/sophies-cover.png" alt="The Sophies Album Artwork - Abstract Design" loading="lazy">
+      </article>
+
+      <article class="portfolio-item" data-title="Eagle Death Album Artwork" data-description="Album artwork design featuring stark imagery and bold composition.">
+        <img src="assets/design/eagle-death.png" alt="Eagle Death Album Artwork" loading="lazy">
+      </article>
+
+      <article class="portfolio-item" data-title="Memorial Program Design" data-description="Elegant memorial program featuring delicate floral elements and thoughtful typography.">
+        <img src="assets/design/blooms-obit.png" alt="Memorial Program Design" loading="lazy">
+      </article>
+
+      <article class="portfolio-item" data-title="Anniversary Celebration Invitation" data-description="Modern beach-themed celebration invitation capturing a moment of joy.">
+        <img src="assets/design/vinny-zayla.png" alt="Anniversary Celebration Invitation" loading="lazy">
+      </article>
     </div>
   </main>
+
+  <!-- Modal -->
+  <div class="modal" id="portfolio-modal">
+    <div class="modal-content">
+      <button class="modal-close" aria-label="Close modal">×</button>
+      <img class="modal-image" src="" alt="">
+      <div class="modal-info">
+        <h2 class="modal-title"></h2>
+        <p class="modal-description"></p>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script>
+    // Modal functionality
+    const modal = document.getElementById('portfolio-modal');
+    const modalImage = modal.querySelector('.modal-image');
+    const modalTitle = modal.querySelector('.modal-title');
+    const modalDescription = modal.querySelector('.modal-description');
+    const modalClose = modal.querySelector('.modal-close');
+
+    // Add click handlers to portfolio items
+    document.querySelectorAll('.portfolio-item').forEach(item => {
+      item.addEventListener('click', () => {
+        const img = item.querySelector('img');
+        modalImage.src = img.src;
+        modalImage.alt = img.alt;
+        modalTitle.textContent = item.dataset.title;
+        modalDescription.textContent = item.dataset.description;
+        modal.classList.add('active');
+      });
+    });
+
+    // Close modal
+    modalClose.addEventListener('click', () => {
+      modal.classList.remove('active');
+    });
+
+    // Close modal on outside click
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.classList.remove('active');
+      }
+    });
+
+    // Close modal on escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('active')) {
+        modal.classList.remove('active');
+      }
+    });
+  </script>
 </body>
 </html>
