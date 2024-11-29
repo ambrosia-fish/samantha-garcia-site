@@ -9,60 +9,120 @@
   <link href="https://fonts.cdnfonts.com/css/amoera-2" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
   <title>Marketing Portfolio - Samantha Garcia</title>
+  <style>
+    .portfolio-section {
+      margin-bottom: var(--space-xl);
+      width: 100%;
+    }
+
+    .portfolio-section-title {
+      font-family: var(--font-heading);
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      margin-bottom: var(--space-lg);
+      text-align: center;
+    }
+
+    .portfolio-grid {
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    }
+
+    .portfolio-item {
+      aspect-ratio: 16/10;
+    }
+
+    @media (max-width: 480px) {
+      .portfolio-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 <body>
   <a href="#main" class="skip-link">Skip to main content</a>
   
   <header class="header" role="banner">
     <div class="header-container">
-      <a href="/" class="logo" aria-label="Home">
+      <a href="index.html" class="logo" aria-label="Home">
         Samantha Garcia
       </a>
       <nav role="navigation" aria-label="Main navigation">
         <ul class="nav-links">
-          <li><a href="/marketing.html" class="nav-link">Marketing</a></li>
-          <li><a href="/design.html" class="nav-link">Design</a></li>
-          <li><a href="/music.html" class="nav-link">Music</a></li>
+          <li><a href="marketing.html" class="nav-link">Marketing</a></li>
+          <li><a href="design.html" class="nav-link">Design</a></li>
+          <li><a href="music.html" class="nav-link">Music</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
   <main id="main" class="main-content" role="main">
-    <div class="portfolio-grid">
-      <!-- Marketing Portfolio Items -->
-      <article class="portfolio-item">
-        <img src="assets/marketing-1.jpg" alt="Social Media Campaign Example">
-        <div class="portfolio-item-overlay">
-          <h2 class="portfolio-item-title">Social Media Campaign</h2>
-          <p class="portfolio-item-description">Strategic social media campaign increasing engagement by 150%.</p>
-        </div>
-      </article>
+    <h1 class="section-title">Marketing Portfolio</h1>
 
-      <article class="portfolio-item">
-        <img src="assets/marketing-2.jpg" alt="Email Marketing Campaign">
-        <div class="portfolio-item-overlay">
-          <h2 class="portfolio-item-title">Email Marketing</h2>
-          <p class="portfolio-item-description">Targeted email campaign with 45% open rate and 28% click-through rate.</p>
-        </div>
-      </article>
+    <!-- Digital Marketing Section -->
+    <section class="portfolio-section">
+      <h2 class="portfolio-section-title">Digital Marketing</h2>
+      <div class="portfolio-grid">
+        <article class="portfolio-item">
+          <img src="assets/marketing/digital/blackbelt-kombucha.png" alt="Blackbelt Kombucha Digital Marketing" loading="lazy">
+          <div class="portfolio-item-overlay">
+            <h3 class="portfolio-item-title">Social Media Campaign</h3>
+            <p class="portfolio-item-description">Brand development and social media strategy for Blackbelt Kombucha.</p>
+          </div>
+        </article>
 
-      <article class="portfolio-item">
-        <img src="assets/marketing-3.jpg" alt="Content Marketing Strategy">
-        <div class="portfolio-item-overlay">
-          <h2 class="portfolio-item-title">Content Strategy</h2>
-          <p class="portfolio-item-description">Comprehensive content strategy increasing organic traffic by 200%.</p>
-        </div>
-      </article>
+        <article class="portfolio-item">
+          <img src="assets/marketing/digital/buy-sell-lease-cover.gif" alt="Real Estate Facebook Cover Animation" loading="lazy">
+          <div class="portfolio-item-overlay">
+            <h3 class="portfolio-item-title">Social Media Design</h3>
+            <p class="portfolio-item-description">Animated cover design for real estate social media presence.</p>
+          </div>
+        </article>
+      </div>
+    </section>
 
-      <article class="portfolio-item">
-        <img src="assets/marketing-4.jpg" alt="Brand Development Project">
-        <div class="portfolio-item-overlay">
-          <h2 class="portfolio-item-title">Brand Development</h2>
-          <p class="portfolio-item-description">Complete brand overhaul resulting in 75% increase in brand recognition.</p>
-        </div>
-      </article>
-    </div>
+    <!-- Print Marketing Section -->
+    <section class="portfolio-section">
+      <h2 class="portfolio-section-title">Print Marketing</h2>
+      <div class="portfolio-grid">
+        <article class="portfolio-item">
+          <img src="assets/marketing/print/business-cards-collection.png" alt="Business Card Designs" loading="lazy">
+          <div class="portfolio-item-overlay">
+            <h3 class="portfolio-item-title">Business Card Collection</h3>
+            <p class="portfolio-item-description">Series of premium business card designs for various clients.</p>
+          </div>
+        </article>
+
+        <article class="portfolio-item">
+          <img src="assets/marketing/print/lynchburg-brochure.png" alt="Lynchburg Brochure Design" loading="lazy">
+          <div class="portfolio-item-overlay">
+            <h3 class="portfolio-item-title">Brochure Design</h3>
+            <p class="portfolio-item-description">Comprehensive brochure design for Lynchburg property showcase.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Magazine Section -->
+    <section class="portfolio-section">
+      <h2 class="portfolio-section-title">Magazine Design</h2>
+      <div class="portfolio-grid">
+        <article class="portfolio-item">
+          <img src="assets/marketing/magazine/haven-spread-1.png" alt="Haven Magazine Spread" loading="lazy">
+          <div class="portfolio-item-overlay">
+            <h3 class="portfolio-item-title">Haven Magazine Layout</h3>
+            <p class="portfolio-item-description">Editorial design and layout for Haven Magazine feature spread.</p>
+          </div>
+        </article>
+
+        <article class="portfolio-item">
+          <img src="assets/marketing/magazine/haven-spread-2.png" alt="Haven Magazine Editorial" loading="lazy">
+          <div class="portfolio-item-overlay">
+            <h3 class="portfolio-item-title">Editorial Design</h3>
+            <p class="portfolio-item-description">Lifestyle section layout and typography for Haven Magazine.</p>
+          </div>
+        </article>
+      </div>
+    </section>
   </main>
 
   <script src="js/main.js"></script>
