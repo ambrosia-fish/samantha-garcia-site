@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Samantha Garcia - Marketing Portfolio">
+  <meta name="description" content="Samantha Garcia - Marketing Professional">
   <link href="https://fonts.cdnfonts.com/css/open-sauce-one" rel="stylesheet">
   <link href="https://fonts.cdnfonts.com/css/tenor-sans" rel="stylesheet">
   <link href="https://fonts.cdnfonts.com/css/amoera-2" rel="stylesheet">
-  <link href="css/styles.css" rel="stylesheet">
-  <title>Marketing Portfolio - Samantha Garcia</title>
+  <link rel="stylesheet" href="styles.css">
+  <title>Marketing - Samantha Garcia</title>
 </head>
-<body>
+<body class="marketing-theme">
   <a href="#main" class="skip-link">Skip to main content</a>
   
   <header class="header" role="banner">
@@ -20,7 +20,7 @@
       </a>
       <nav role="navigation" aria-label="Main navigation">
         <ul class="nav-links">
-          <li><a href="marketing.html" class="nav-link">Marketing</a></li>
+          <li><a href="marketing.html" class="nav-link active">Marketing</a></li>
           <li><a href="design.html" class="nav-link">Design</a></li>
           <li><a href="music.html" class="nav-link">Music</a></li>
         </ul>
@@ -29,88 +29,10 @@
   </header>
 
   <main id="main" class="main-content" role="main">
-    <h1 class="section-title">Marketing Portfolio</h1>
-    <div class="portfolio-grid">
-      <!-- Digital Marketing Items -->
-      <article class="portfolio-item" data-title="Social Media Campaign" data-description="Brand development and social media strategy for Blackbelt Kombucha.">
-        <img src="assets/marketing/digital/black-belt-kombucha.png" alt="Blackbelt Kombucha Digital Marketing" loading="lazy">
-      </article>
-
-      <article class="portfolio-item" data-title="App Design Marketing" data-description="Mobile app marketing material and mockup design.">
-        <img src="assets/marketing/digital/paid-in-full-mockup.svg" alt="Paid in Full App Mockup" loading="lazy">
-      </article>
-
-      <!-- Print Marketing Items -->
-      <article class="portfolio-item" data-title="Business Card Collection" data-description="Series of premium business card designs for various clients.">
-        <img src="assets/marketing/print/business-cards.png" alt="Business Card Designs" loading="lazy">
-      </article>
-
-      <article class="portfolio-item" data-title="Brochure Design" data-description="Comprehensive brochure design for Lynchburg property showcase.">
-        <img src="assets/marketing/print/lynchburg-brochure.png" alt="Lynchburg Brochure Design" loading="lazy">
-      </article>
-
-      <!-- Magazine Items -->
-      <article class="portfolio-item" data-title="Haven Magazine Layout" data-description="Editorial design and layout for Haven Magazine feature spread.">
-        <img src="assets/marketing/haven-spread-1.png" alt="Haven Magazine Spread" loading="lazy">
-      </article>
-
-      <article class="portfolio-item" data-title="Editorial Design" data-description="Lifestyle section layout and typography for Haven Magazine.">
-        <img src="assets/marketing/haven-spread-2.png" alt="Haven Magazine Editorial" loading="lazy">
-      </article>
+    <div class="hero">
+      <h1 class="coming-soon">Marketing</h1>
+      <p class="subtitle">Marketing expertise and portfolio coming soon.</p>
     </div>
   </main>
-
-  <!-- Modal -->
-  <div class="modal" id="portfolio-modal">
-    <div class="modal-content">
-      <button class="modal-close" aria-label="Close modal">×</button>
-      <img class="modal-image" src="" alt="">
-      <div class="modal-info">
-        <h2 class="modal-title"></h2>
-        <p class="modal-description"></p>
-      </div>
-    </div>
-  </div>
-
-  <script src="js/main.js"></script>
-  <script>
-    // Modal functionality
-    const modal = document.getElementById('portfolio-modal');
-    const modalImage = modal.querySelector('.modal-image');
-    const modalTitle = modal.querySelector('.modal-title');
-    const modalDescription = modal.querySelector('.modal-description');
-    const modalClose = modal.querySelector('.modal-close');
-
-    // Add click handlers to portfolio items
-    document.querySelectorAll('.portfolio-item').forEach(item => {
-      item.addEventListener('click', () => {
-        const img = item.querySelector('img');
-        modalImage.src = img.src;
-        modalImage.alt = img.alt;
-        modalTitle.textContent = item.dataset.title;
-        modalDescription.textContent = item.dataset.description;
-        modal.classList.add('active');
-      });
-    });
-
-    // Close modal
-    modalClose.addEventListener('click', () => {
-      modal.classList.remove('active');
-    });
-
-    // Close modal on outside click
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) {
-        modal.classList.remove('active');
-      }
-    });
-
-    // Close modal on escape key
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && modal.classList.contains('active')) {
-        modal.classList.remove('active');
-      }
-    });
-  </script>
 </body>
 </html>
