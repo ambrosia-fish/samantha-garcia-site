@@ -10,8 +10,8 @@
 .portfolio-item {
   position: absolute;
   cursor: pointer;
-  transition: all var(--transition-normal);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  transition: transform var(--transition-normal);
+  background: none;
 }
 
 .portfolio-item img {
@@ -20,11 +20,7 @@
   max-width: 100%;
   display: block;
   transition: transform var(--transition-normal);
-}
-
-.portfolio-item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+  box-shadow: 5px 5px 15px rgba(0,0,0,0.2); /* Single shadow only on the image */
 }
 
 /* Random positioning for scatter effect */
