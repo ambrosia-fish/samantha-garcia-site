@@ -196,72 +196,151 @@ body {
   animation: fadeIn 1s ease-out 0.3s backwards;
 }
 
-/* Portfolio Grid Styles */
+/* Portfolio Styles */
 .portfolio-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: var(--space-lg);
-  max-width: 1200px;
+  position: relative;
   width: 100%;
-  padding: var(--space-lg);
+  min-height: 100vh;
+  padding: 4rem;
+  margin: 0 auto;
+  max-width: 1800px;
   animation: fadeIn 1s ease-out 0.5s backwards;
 }
 
 .portfolio-item {
-  position: relative;
-  aspect-ratio: 1;
-  overflow: hidden;
-  border-radius: 12px;
+  position: absolute;
+  cursor: pointer;
   transition: all var(--transition-normal);
+  width: fit-content;
+  height: fit-content;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-}
-
-.portfolio-item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+  border-radius: 12px;
+  overflow: hidden;
 }
 
 .portfolio-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  display: block;
+  max-width: 100%;
+  height: auto;
   transition: transform var(--transition-normal);
 }
 
 .portfolio-item:hover img {
+  transform: scale(1.05);
+}
+
+/* Random positioning for scatter effect */
+.portfolio-item:nth-child(1) {
+  top: 5%;
+  left: 15%;
+  transform: rotate(-5deg);
+}
+
+.portfolio-item:nth-child(2) {
+  top: 15%;
+  right: 10%;
+  transform: rotate(3deg);
+}
+
+.portfolio-item:nth-child(3) {
+  top: 25%;
+  left: 20%;
+  transform: rotate(-2deg);
+}
+
+.portfolio-item:nth-child(4) {
+  top: 35%;
+  right: 25%;
+  transform: rotate(4deg);
+}
+
+.portfolio-item:nth-child(5) {
+  top: 45%;
+  left: 35%;
+  transform: rotate(-3deg);
+}
+
+.portfolio-item:nth-child(6) {
+  top: 55%;
+  right: 30%;
+  transform: rotate(2deg);
+}
+
+/* Modal Styles */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  backdrop-filter: blur(8px);
+}
+
+.modal.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-content {
+  max-width: 90vw;
+  max-height: 90vh;
+  position: relative;
+  transform: scale(0.8);
+  transition: transform 0.3s ease;
+}
+
+.modal.active .modal-content {
+  transform: scale(1);
+}
+
+.modal-image {
+  max-width: 100%;
+  max-height: 90vh;
+  object-fit: contain;
+}
+
+.modal-close {
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
+  padding: 10px;
+  transition: transform 0.3s ease;
+}
+
+.modal-close:hover {
   transform: scale(1.1);
 }
 
-.portfolio-item-overlay {
+.modal-info {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
-  background: rgba(0, 0, 0, 0.8);
-  padding: var(--space-md);
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+  padding: 2rem;
+  color: white;
   transform: translateY(100%);
-  transition: transform var(--transition-normal);
-  backdrop-filter: blur(4px);
+  transition: transform 0.3s ease;
 }
 
-.portfolio-item:hover .portfolio-item-overlay {
+.modal-content:hover .modal-info {
   transform: translateY(0);
 }
 
-.portfolio-item-title {
-  font-family: var(--font-heading);
-  font-size: 1.5rem;
-  margin-bottom: var(--space-xs);
-  color: var(--current-accent);
-}
-
-.portfolio-item-description {
-  font-family: var(--font-body);
-  font-size: 0.9rem;
-  opacity: 0.9;
-  color: var(--current-accent);
-}
-
+/* Responsive Adjustments */
 @media (max-width: 768px) {
   .header-container {
     flex-direction: column;
@@ -278,7 +357,19 @@ body {
   }
 
   .portfolio-grid {
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    padding: 2rem;
+  }
+  
+  .portfolio-item {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    margin: 2rem auto;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    transform: none !important;
   }
 }
 
@@ -290,7 +381,6 @@ body {
   }
 
   .portfolio-grid {
-    grid-template-columns: 1fr;
     padding: var(--space-sm);
   }
 
