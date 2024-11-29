@@ -2,87 +2,35 @@
 .portfolio-grid {
   position: relative;
   width: 100%;
-  min-height: 150vh; /* Give plenty of room for scattered items */
-  padding: 4rem;
+  min-height: 100vh;
+  padding: 2rem;
   margin: 0 auto;
   max-width: 1800px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Portfolio Items */
 .portfolio-item {
-  position: absolute;
+  flex: 0 1 auto;
+  max-width: 500px;
   cursor: pointer;
-  width: 350px; /* Base size - will be varied */
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  transform-origin: center;
-  border-radius: 4px;
-}
-
-/* Random positioning and sizing for items */
-.portfolio-item:nth-child(1) {
-  top: 5%;
-  left: 15%;
-  transform: rotate(-5deg);
-  width: 380px;
-  z-index: 2;
-}
-
-.portfolio-item:nth-child(2) {
-  top: 20%;
-  right: 10%;
-  transform: rotate(3deg);
-  width: 400px;
-  z-index: 1;
-}
-
-.portfolio-item:nth-child(3) {
-  bottom: 15%;
-  left: 20%;
-  transform: rotate(-2deg);
-  width: 360px;
-  z-index: 3;
-}
-
-.portfolio-item:nth-child(4) {
-  bottom: 25%;
-  right: 25%;
-  transform: rotate(4deg);
-  width: 320px;
-  z-index: 2;
-}
-
-.portfolio-item:nth-child(5) {
-  top: 40%;
-  left: 35%;
-  transform: rotate(-3deg);
-  width: 390px;
-  z-index: 4;
-}
-
-.portfolio-item:nth-child(6) {
-  top: 50%;
-  right: 30%;
-  transform: rotate(2deg);
-  width: 370px;
-  z-index: 1;
+  transition: transform 0.3s ease;
 }
 
 .portfolio-item img {
   width: 100%;
   height: auto;
   display: block;
-  box-shadow: 5px 5px 15px rgba(0,0,0,0.2);
-  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.5s ease;
+  transition: transform 0.3s ease;
 }
 
 /* Hover Effects */
 .portfolio-item:hover {
-  z-index: 10;
-}
-
-.portfolio-item:hover img {
-  transform: scale(1.1);
-  box-shadow: 8px 8px 25px rgba(0,0,0,0.3);
+  transform: scale(1.02);
 }
 
 /* Modal Styles */
@@ -113,7 +61,7 @@
   max-height: 90vh;
   position: relative;
   transform: scale(0.8);
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.3s ease;
 }
 
 .modal.active .modal-content {
@@ -124,7 +72,6 @@
   max-width: 100%;
   max-height: 90vh;
   object-fit: contain;
-  box-shadow: 0 0 40px rgba(0,0,0,0.3);
 }
 
 .modal-close {
@@ -163,34 +110,23 @@
 /* Responsive Adjustments */
 @media (max-width: 1200px) {
   .portfolio-item {
-    width: 300px;
+    max-width: 400px;
   }
 }
 
 @media (max-width: 768px) {
   .portfolio-grid {
-    padding: 2rem;
+    padding: 1rem;
+    gap: 1rem;
   }
 
   .portfolio-item {
-    position: relative;
     width: 100%;
-    max-width: 400px;
-    margin: 2rem auto;
-    top: auto !important;
-    left: auto !important;
-    right: auto !important;
-    bottom: auto !important;
-    transform: none !important;
-  }
-
-  .portfolio-item:hover img {
-    transform: scale(1.05);
+    max-width: 350px;
   }
 
   .modal-close {
     top: 10px;
     right: 10px;
-    color: white;
   }
 }
