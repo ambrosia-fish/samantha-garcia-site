@@ -7,6 +7,14 @@
   max-width: 1800px;
 }
 
+/* Target the article element specifically */
+article.portfolio-item {
+    background: none;
+    background-color: transparent !important;
+    border: none;
+    outline: none;
+}
+
 .portfolio-item {
   position: absolute;
   cursor: pointer;
