@@ -9,6 +9,33 @@
   <link href="https://fonts.cdnfonts.com/css/amoera-2" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
   <title>Design Portfolio - Samantha Garcia</title>
+  <style>
+    .section-title {
+      font-family: var(--font-heading);
+      font-size: clamp(2rem, 5vw, 3rem);
+      text-align: center;
+      margin-bottom: var(--space-xl);
+      width: 100%;
+    }
+
+    .portfolio-grid {
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    }
+
+    .portfolio-item {
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+    }
+
+    .portfolio-item:hover {
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .portfolio-item-overlay {
+      background: rgba(47, 75, 194, 0.9);
+      padding: var(--space-lg);
+    }
+  </style>
 </head>
 <body>
   <a href="#main" class="skip-link">Skip to main content</a>
@@ -20,48 +47,46 @@
       </a>
       <nav role="navigation" aria-label="Main navigation">
         <ul class="nav-links">
-          <li><a href="/marketing.html" class="nav-link">Marketing</a></li>
-          <li><a href="/design.html" class="nav-link">Design</a></li>
-          <li><a href="/music.html" class="nav-link">Music</a></li>
+          <li><a href="marketing.html" class="nav-link">Marketing</a></li>
+          <li><a href="design.html" class="nav-link">Design</a></li>
+          <li><a href="music.html" class="nav-link">Music</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
   <main id="main" class="main-content" role="main">
+    <h1 class="section-title">Design Portfolio</h1>
     <div class="portfolio-grid">
-      <!-- The Sophies Album Artwork -->
       <article class="portfolio-item">
-        <img src="assets/sophies-album-1.jpg" alt="The Sophies Album Artwork - Abstract Design">
+        <img src="assets/design/sophies-album-1.jpg" alt="The Sophies Album Artwork - Abstract Design" loading="lazy">
         <div class="portfolio-item-overlay">
           <h2 class="portfolio-item-title">The Sophies - Album Artwork</h2>
-          <p class="portfolio-item-description">Album artwork featuring dynamic abstract design with vibrant colors.</p>
+          <p class="portfolio-item-description">Abstract album artwork featuring dynamic color blending and expressive brushwork, creating a vibrant visual identity for the band.</p>
         </div>
       </article>
 
       <article class="portfolio-item">
-        <img src="assets/sophies-album-2.jpg" alt="The Sophies Album Artwork - Portrait Collection">
+        <img src="assets/design/sophies-album-2.jpg" alt="The Sophies Album Artwork - Portrait Collection" loading="lazy">
         <div class="portfolio-item-overlay">
           <h2 class="portfolio-item-title">The Sophies - Group Portrait</h2>
-          <p class="portfolio-item-description">Artistic portrait collection arranged in a dynamic composition.</p>
+          <p class="portfolio-item-description">Artistic portrait collection combining traditional photography with digital art elements for a unique band aesthetic.</p>
         </div>
       </article>
 
-      <!-- Memorial Program Design -->
       <article class="portfolio-item">
-        <img src="assets/memorial-program.jpg" alt="Memorial Program Design">
+        <img src="assets/design/memorial-rosemary.jpg" alt="Memorial Program Design for Rosemary" loading="lazy">
         <div class="portfolio-item-overlay">
           <h2 class="portfolio-item-title">Memorial Program Design</h2>
-          <p class="portfolio-item-description">Elegant and respectful program design with floral elements.</p>
+          <p class="portfolio-item-description">Elegant memorial program featuring delicate floral elements and thoughtful typography to honor a cherished life.</p>
         </div>
       </article>
 
-      <!-- Celebration Invitation -->
       <article class="portfolio-item">
-        <img src="assets/celebration-invite.jpg" alt="Anniversary Celebration Invitation">
+        <img src="assets/design/anniversary-invite.jpg" alt="Anniversary Celebration Invitation" loading="lazy">
         <div class="portfolio-item-overlay">
           <h2 class="portfolio-item-title">Anniversary Celebration</h2>
-          <p class="portfolio-item-description">Modern and romantic beach-themed celebration invitation.</p>
+          <p class="portfolio-item-description">Modern beach-themed celebration invitation capturing romance and joy through elegant typography and composition.</p>
         </div>
       </article>
     </div>
