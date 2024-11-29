@@ -141,8 +141,7 @@
       place-items: center;
       min-height: 100vh;
       padding: var(--space-xl);
-      padding-top: calc(var(--space-xl) + 100px); /* Add padding to account for fixed header */
-      margin-top: 0; /* Remove negative margin */
+      padding-top: calc(var(--space-xl) + 100px);
     }
 
     .hero {
@@ -199,7 +198,7 @@
       }
 
       .main-content {
-        padding-top: calc(var(--space-xl) + 150px); /* More padding for stacked mobile header */
+        padding-top: calc(var(--space-xl) + 150px);
       }
     }
 
@@ -222,9 +221,9 @@
       </a>
       <nav role="navigation" aria-label="Main navigation">
         <ul class="nav-links">
-          <li><a href="#marketing" class="nav-link" data-theme="marketing">Marketing</a></li>
-          <li><a href="#design" class="nav-link" data-theme="design">Design</a></li>
-          <li><a href="#music" class="nav-link" data-theme="music">Music</a></li>
+          <li><a href="marketing.html" class="nav-link" data-theme="marketing">Marketing</a></li>
+          <li><a href="design.html" class="nav-link" data-theme="design">Design</a></li>
+          <li><a href="music.html" class="nav-link" data-theme="music">Music</a></li>
         </ul>
       </nav>
     </div>
@@ -233,7 +232,7 @@
   <main id="main" class="main-content" role="main">
     <div class="hero">
       <h1 class="coming-soon">Coming<br>Soon</h1>
-      <!-- <p class="subtitle">A new creative portfolio showcasing work in marketing, design, and music.</p> -->
+      <p class="subtitle">A new creative portfolio showcasing work in marketing, design, and music.</p>
     </div>
   </main>
 
@@ -247,13 +246,18 @@
           el.classList.remove('active');
         });
         
-        // Add active state with glow
+        // Add active state
         e.target.classList.add('active');
         
         // Update theme colors
         const theme = e.target.dataset.theme;
         document.documentElement.style.setProperty('--current-primary', `var(--${theme}-primary)`);
         document.documentElement.style.setProperty('--current-accent', `var(--${theme}-accent)`);
+        
+        // Navigate after transition
+        setTimeout(() => {
+          window.location.href = e.target.href;
+        }, 600); // Match transition duration
       });
     });
 
@@ -265,6 +269,7 @@
       });
       document.documentElement.style.setProperty('--current-primary', 'var(--home-primary)');
       document.documentElement.style.setProperty('--current-accent', 'var(--home-accent)');
+      window.location.href = e.target.href;
     });
   </script>
 </body>
