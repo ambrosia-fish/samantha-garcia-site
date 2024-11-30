@@ -7,7 +7,7 @@
   <link href="https://fonts.cdnfonts.com/css/open-sauce-one" rel="stylesheet">
   <link href="https://fonts.cdnfonts.com/css/tenor-sans" rel="stylesheet">
   <link href="https://fonts.cdnfonts.com/css/amoera-2" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="css/styles.css">
   <title>Samantha Garcia</title>
 </head>
 <body>
@@ -38,20 +38,24 @@
   </main>
 
   <script>
-    // Navigation and transition handling
+    // Navigation handling with smoother transitions
     document.querySelectorAll('.nav-link').forEach(link => {
       link.addEventListener('click', (e) => {
         e.preventDefault();
-        const target = e.target;
-        const url = target.href;
+        const url = e.target.href;
         const pageTransition = document.querySelector('.page-transition');
         
-        // Start transition
-        pageTransition.classList.add('active');
+        // Fade out content
+        document.querySelector('.hero').style.opacity = '0';
         
-        // Navigate after transition
+        // After content fades, show transition overlay
         setTimeout(() => {
-          window.location.href = url;
+          pageTransition.classList.add('active');
+          
+          // Navigate after transition
+          setTimeout(() => {
+            window.location.href = url;
+          }, 800);
         }, 300);
       });
     });
@@ -65,10 +69,13 @@
       
       e.preventDefault();
       const pageTransition = document.querySelector('.page-transition');
-      pageTransition.classList.add('active');
+      document.querySelector('.hero').style.opacity = '0';
       
       setTimeout(() => {
-        window.location.href = e.target.href;
+        pageTransition.classList.add('active');
+        setTimeout(() => {
+          window.location.href = e.target.href;
+        }, 800);
       }, 300);
     });
   </script>
