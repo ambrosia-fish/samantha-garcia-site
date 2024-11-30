@@ -13,9 +13,7 @@
 <body class="design-theme">
   <header class="header" role="banner">
     <div class="header-container">
-      <a href="index.html" class="logo" aria-label="Home">
-        Samantha Garcia
-      </a>
+      <a href="index.html" class="logo" aria-label="Home">Samantha Garcia</a>
       <nav role="navigation" aria-label="Main navigation">
         <ul class="nav-links">
           <li><a href="marketing.html" class="nav-link">Marketing</a></li>
@@ -30,25 +28,21 @@
     <h1 class="section-title">Design Portfolio</h1>
     <div class="portfolio-grid">
       <article class="portfolio-item">
-        <img src="assets/design/haven-spread.png" alt="Haven Magazine Spread Design" loading="lazy">
+        <img src="design/blooms-obit.png" alt="Blooms Obituary Design" loading="lazy">
       </article>
-
       <article class="portfolio-item">
-        <img src="assets/design/paid-in-full.png" alt="Paid in Full Design" loading="lazy">
+        <img src="design/eagle-death.png" alt="Eagle Death Design" loading="lazy">
       </article>
-
       <article class="portfolio-item">
-        <img src="assets/design/lynchburg.png" alt="Lynchburg Brochure Design" loading="lazy">
+        <img src="design/sophies-cover.png" alt="Sophie's Cover Design" loading="lazy">
       </article>
-
       <article class="portfolio-item">
-        <img src="assets/design/black-belt.png" alt="Black Belt Design" loading="lazy">
+        <img src="design/vinny-zayla.png" alt="Vinny Zayla Design" loading="lazy">
       </article>
     </div>
   </main>
 
   <script>
-    // Initial animations
     function startSequentialAnimation() {
       setTimeout(() => {
         document.querySelector('.section-title').classList.add('visible');
@@ -74,19 +68,14 @@
 
     document.querySelectorAll('.nav-link').forEach(link => {
       if (link.classList.contains('active')) return;
-      
       link.addEventListener('click', (e) => {
         e.preventDefault();
-        const target = e.target;
-        const url = target.href;
+        const url = e.target.href;
         const theme = target.textContent.toLowerCase();
-        
         document.querySelector('.main-content').classList.add('fade-out');
-        
         setTimeout(() => {
           document.body.style.backgroundColor = getComputedStyle(document.documentElement)
             .getPropertyValue(`--${theme}-primary`).trim();
-          
           setTimeout(() => {
             window.location.href = url;
           }, 300);
@@ -97,13 +86,10 @@
     document.querySelector('.logo').addEventListener('click', (e) => {
       e.preventDefault();
       const url = e.target.href;
-      
       document.querySelector('.main-content').classList.add('fade-out');
-      
       setTimeout(() => {
         document.body.style.backgroundColor = getComputedStyle(document.documentElement)
           .getPropertyValue('--home-primary').trim();
-        
         setTimeout(() => {
           window.location.href = url;
         }, 300);
