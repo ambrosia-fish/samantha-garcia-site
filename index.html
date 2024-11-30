@@ -7,235 +7,24 @@
   <link href="https://fonts.cdnfonts.com/css/open-sauce-one" rel="stylesheet">
   <link href="https://fonts.cdnfonts.com/css/tenor-sans" rel="stylesheet">
   <link href="https://fonts.cdnfonts.com/css/amoera-2" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
   <title>Samantha Garcia</title>
-  <style>
-    :root {
-      /* Core colors - adjusted for WCAG AA contrast */
-      --home-primary: #161625;      /* Deep navy */
-      --home-accent: #ECE6E4;       /* Light cream - 15.8:1 contrast ratio */
-      
-      --marketing-primary: #9B4949;  /* Darker rose - 7.5:1 contrast ratio */
-      --marketing-accent: #ECE6E4;   
-      
-      --design-primary: #2F4BC2;     /* Deeper blue - 8.1:1 contrast ratio */
-      --design-accent: #ECE6E4;     
-      
-      --music-primary: #744284;      /* Deeper purple - 7.8:1 contrast ratio */
-      --music-accent: #ECE6E4;      
-      
-      /* Typography */
-      --font-heading: 'amoera', sans-serif;
-      --font-body: 'Open Sauce One', system-ui, sans-serif;
-      --font-nav: 'Tenor Sans', sans-serif;
-      
-      /* Spacing */
-      --space-xs: 0.5rem;
-      --space-sm: 1rem;
-      --space-md: 1.5rem;
-      --space-lg: 2rem;
-      --space-xl: 3rem;
-      
-      /* Transitions */
-      --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-
-      /* Default theme */
-      --current-primary: var(--home-primary);
-      --current-accent: var(--home-accent);
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      :root {
-        --transition-normal: 0s;
-      }
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      background-color: var(--current-primary);
-      color: var(--current-accent);
-      font-family: var(--font-body);
-      line-height: 1.5;
-      min-height: 100vh;
-      overflow-x: hidden;
-      transition: background-color var(--transition-normal);
-    }
-
-    /* Hide content initially until fully loaded */
-    body.loading * {
-      opacity: 0;
-    }
-
-    body.loaded * {
-      opacity: 1;
-      transition: opacity var(--transition-normal);
-    }
-
-    .skip-link {
-      background: var(--current-accent);
-      color: var(--current-primary);
-      left: 50%;
-      padding: var(--space-sm);
-      position: absolute;
-      transform: translateX(-50%);
-      transition: transform var(--transition-normal);
-      z-index: 100;
-      top: -100%;
-    }
-
-    .skip-link:focus {
-      top: 0;
-    }
-
-    .header {
-      padding: var(--space-md) var(--space-lg);
-      background-color: var(--current-primary);
-      position: fixed;
-      width: 100%;
-      top: 0;
-      z-index: 10;
-      transition: background-color var(--transition-normal);
-    }
-
-    .header-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .logo {
-      font-family: var(--font-heading);
-      font-size: clamp(1.5rem, 4vw, 2.5rem);
-      color: var(--current-accent);
-      letter-spacing: 0.02em;
-      transition: color var(--transition-normal);
-      text-decoration: none;
-    }
-
-    .nav-links {
-      list-style: none;
-      display: flex;
-      gap: var(--space-lg);
-    }
-
-    .nav-link {
-      font-family: var(--font-nav);
-      color: var(--current-accent);
-      text-decoration: none;
-      font-size: clamp(1rem, 2vw, 1.25rem);
-      padding: var(--space-xs) var(--space-sm);
-      border-radius: 0.375rem;
-      letter-spacing: 0.1em;
-      opacity: 0.7;
-      transition: opacity var(--transition-normal);
-    }
-
-    .nav-link:hover,
-    .nav-link:focus,
-    .nav-link.active {
-      opacity: 1;
-    }
-
-    .main-content {
-      display: grid;
-      place-items: center;
-      min-height: 100vh;
-      padding: var(--space-xl);
-      padding-top: calc(var(--space-xl) + 100px);
-    }
-
-    .hero {
-      text-align: center;
-      max-width: 800px;
-      opacity: 1;
-      transition: opacity var(--transition-normal);
-    }
-
-    .fade-out {
-      opacity: 0;
-    }
-
-    .coming-soon {
-      font-family: var(--font-heading);
-      font-size: clamp(3rem, 10vw, 6rem);
-      letter-spacing: 0.2em;
-      color: var(--current-accent);
-      text-transform: uppercase;
-      margin-bottom: var(--space-md);
-      line-height: 1.2;
-      transition: color var(--transition-normal);
-      animation: textGlow 3s ease-in-out infinite alternate;
-    }
-
-    @keyframes textGlow {
-      from {
-        text-shadow: 
-          0 0 20px rgba(236, 230, 228, 0.3),
-          0 0 40px rgba(236, 230, 228, 0.3),
-          0 0 60px rgba(236, 230, 228, 0.3);
-      }
-      to {
-        text-shadow: 
-          0 0 40px rgba(236, 230, 228, 0.7),
-          0 0 80px rgba(236, 230, 228, 0.7),
-          0 0 120px rgba(236, 230, 228, 0.7);
-      }
-    }
-
-    .subtitle {
-      font-family: var(--font-nav);
-      font-size: clamp(1rem, 3vw, 1.5rem);
-      color: var(--current-accent);
-      opacity: 0.8;
-      max-width: 600px;
-      margin: 0 auto;
-      transition: color var(--transition-normal);
-    }
-
-    @media (max-width: 768px) {
-      .header-container {
-        flex-direction: column;
-        gap: var(--space-md);
-      }
-
-      .nav-links {
-        flex-direction: row;
-        gap: var(--space-md);
-      }
-
-      .main-content {
-        padding-top: calc(var(--space-xl) + 150px);
-      }
-    }
-
-    @media (max-width: 480px) {
-      .nav-links {
-        flex-direction: column;
-        gap: var(--space-sm);
-        text-align: center;
-      }
-    }
-  </style>
 </head>
-<body class="loading">
+<body>
   <a href="#main" class="skip-link">Skip to main content</a>
+  
+  <div class="page-transition"></div>
   
   <header class="header" role="banner">
     <div class="header-container">
-      <a href="/" class="logo" aria-label="Home">
+      <a href="index.html" class="logo" aria-label="Home">
         Samantha Garcia
       </a>
       <nav role="navigation" aria-label="Main navigation">
         <ul class="nav-links">
-          <li><a href="marketing.html" class="nav-link" data-theme="marketing">Marketing</a></li>
-          <li><a href="design.html" class="nav-link" data-theme="design">Design</a></li>
-          <li><a href="music.html" class="nav-link" data-theme="music">Music</a></li>
+          <li><a href="marketing.html" class="nav-link">Marketing</a></li>
+          <li><a href="design.html" class="nav-link">Design</a></li>
+          <li><a href="music.html" class="nav-link">Music</a></li>
         </ul>
       </nav>
     </div>
@@ -249,55 +38,37 @@
   </main>
 
   <script>
-    // Wait for all content to load before showing anything
-    window.addEventListener('load', () => {
-      document.body.classList.remove('loading');
-      document.body.classList.add('loaded');
-    });
-
+    // Navigation and transition handling
     document.querySelectorAll('.nav-link').forEach(link => {
       link.addEventListener('click', (e) => {
         e.preventDefault();
+        const target = e.target;
+        const url = target.href;
+        const pageTransition = document.querySelector('.page-transition');
         
-        // Get the target URL and theme
-        const url = e.target.href;
-        const theme = e.target.dataset.theme;
+        // Start transition
+        pageTransition.classList.add('active');
         
-        // Fade out content first
-        const hero = document.querySelector('.hero');
-        hero.classList.add('fade-out');
-        
-        // After content fades, update colors and navigate
+        // Navigate after transition
         setTimeout(() => {
-          // Update theme colors
-          document.documentElement.style.setProperty('--current-primary', `var(--${theme}-primary)`);
-          document.documentElement.style.setProperty('--current-accent', `var(--${theme}-accent)`);
-          
-          // Navigate to new page
-          setTimeout(() => {
-            window.location.href = url;
-          }, 300);
+          window.location.href = url;
         }, 300);
       });
     });
 
-    // Reset to home state when clicking logo
+    // Logo click handling
     document.querySelector('.logo').addEventListener('click', (e) => {
-      e.preventDefault();
+      if (window.location.pathname.endsWith('index.html') || window.location.pathname === '/') {
+        e.preventDefault();
+        return;
+      }
       
-      // Fade out content
-      const hero = document.querySelector('.hero');
-      hero.classList.add('fade-out');
+      e.preventDefault();
+      const pageTransition = document.querySelector('.page-transition');
+      pageTransition.classList.add('active');
       
       setTimeout(() => {
-        // Reset colors
-        document.documentElement.style.setProperty('--current-primary', 'var(--home-primary)');
-        document.documentElement.style.setProperty('--current-accent', 'var(--home-accent)');
-        
-        // Navigate home
-        setTimeout(() => {
-          window.location.href = e.target.href;
-        }, 300);
+        window.location.href = e.target.href;
       }, 300);
     });
   </script>
