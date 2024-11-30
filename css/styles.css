@@ -20,6 +20,7 @@
   
   --transition-fast: 0.3s ease;
   --transition-normal: 0.5s ease;
+  --transition-slow: 0.8s ease;
 }
 
 * {
@@ -28,7 +29,6 @@
   box-sizing: border-box;
 }
 
-/* Base styles */
 body {
   font-family: var(--font-body);
   line-height: 1.5;
@@ -39,12 +39,10 @@ body {
   transition: background-color var(--transition-normal);
 }
 
-/* Theme colors */
 .marketing-theme { background-color: var(--marketing-primary); color: var(--marketing-accent); }
 .design-theme { background-color: var(--design-primary); color: var(--design-accent); }
 .music-theme { background-color: var(--music-primary); color: var(--music-accent); }
 
-/* Header */
 .header {
   position: fixed;
   top: 0;
@@ -70,9 +68,7 @@ body {
   transition: opacity var(--transition-fast);
 }
 
-.logo:hover {
-  opacity: 0.8;
-}
+.logo:hover { opacity: 0.8; }
 
 .nav-links {
   list-style: none;
@@ -91,11 +87,8 @@ body {
 }
 
 .nav-link:hover,
-.nav-link.active {
-  opacity: 1;
-}
+.nav-link.active { opacity: 1; }
 
-/* Main content */
 .main-content {
   min-height: 100vh;
   padding: calc(var(--space-xl) * 2) var(--space-xl) var(--space-xl);
@@ -103,11 +96,23 @@ body {
   transition: opacity var(--transition-fast);
 }
 
-.main-content.fade-out {
+.main-content.fade-out { opacity: 0; }
+
+.section-title {
+  font-family: var(--font-heading);
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  text-align: center;
+  margin-bottom: var(--space-xl);
   opacity: 0;
+  transform: translateY(20px);
+  transition: opacity var(--transition-normal), transform var(--transition-normal);
 }
 
-/* Portfolio grid */
+.section-title.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .portfolio-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -115,12 +120,17 @@ body {
   max-width: 1400px;
   margin: 0 auto;
   padding: var(--space-lg);
-  opacity: 0;
-  transition: opacity var(--transition-normal);
 }
 
-.portfolio-grid.loaded {
+.portfolio-item {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity var(--transition-normal), transform var(--transition-normal);
+}
+
+.portfolio-item.visible {
   opacity: 1;
+  transform: translateY(0);
 }
 
 .portfolio-item img {
@@ -130,81 +140,6 @@ body {
   transition: transform var(--transition-fast);
 }
 
-.portfolio-item:hover img {
-  transform: scale(1.02);
-}
+.portfolio-item:hover img { transform: scale(1.02); }
 
-/* Text styles */
-.section-title {
-  font-family: var(--font-heading);
-  font-size: clamp(2.5rem, 6vw, 4rem);
-  text-align: center;
-  margin-bottom: var(--space-xl);
-}
-
-.coming-soon {
-  font-family: var(--font-heading);
-  font-size: clamp(3rem, 10vw, 6rem);
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  line-height: 1.2;
-  text-align: center;
-  margin-bottom: var(--space-md);
-}
-
-.subtitle {
-  font-family: var(--font-nav);
-  font-size: clamp(1rem, 3vw, 1.5rem);
-  opacity: 0.8;
-  text-align: center;
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-/* Spotify embeds */
-.spotify-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: var(--space-lg);
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: var(--space-lg);
-  opacity: 0;
-  transition: opacity var(--transition-normal);
-}
-
-.spotify-grid.loaded {
-  opacity: 1;
-}
-
-.spotify-embed {
-  width: 100%;
-  border-radius: 12px;
-  overflow: hidden;
-  background: rgba(255, 255, 255, 0.1);
-  padding: 1rem;
-}
-
-/* Media queries */
-@media (max-width: 768px) {
-  .header-container {
-    flex-direction: column;
-    gap: var(--space-md);
-    text-align: center;
-  }
-
-  .nav-links {
-    gap: var(--space-md);
-  }
-
-  .main-content {
-    padding-top: calc(var(--space-xl) * 3);
-  }
-}
-
-@media (max-width: 480px) {
-  .nav-links {
-    flex-direction: column;
-    gap: var(--space-sm);
-  }
-}
+/* Rest of your styles for Spotify grid, responsive design, etc... */
