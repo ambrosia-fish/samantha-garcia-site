@@ -7,8 +7,32 @@
   <link href="https://fonts.cdnfonts.com/css/open-sauce-one" rel="stylesheet">
   <link href="https://fonts.cdnfonts.com/css/tenor-sans" rel="stylesheet">
   <link href="https://fonts.cdnfonts.com/css/amoera-2" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <link href="css/styles.css" rel="stylesheet">
   <title>Music Portfolio - Samantha Garcia</title>
+  <style>
+    .spotify-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      width: 100%;
+      max-width: 1200px;
+      padding: 2rem;
+      opacity: 0;
+      transition: opacity var(--transition-normal);
+    }
+
+    .spotify-grid.loaded {
+      opacity: 1;
+    }
+
+    .spotify-embed {
+      width: 100%;
+      border-radius: 12px;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 1rem;
+    }
+  </style>
 </head>
 <body class="music-theme">
   <a href="#main" class="skip-link">Skip to main content</a>
@@ -31,18 +55,33 @@
   </header>
 
   <main id="main" class="main-content" role="main">
-    <div class="portfolio-grid">
-      <!-- Portfolio content here -->
+    <h1 class="section-title">Musical Portfolio</h1>
+    <div class="spotify-grid">
+      <div class="spotify-embed">
+        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/5VtxQ8oZn8ENHJ3CKhH4Mn?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+      </div>
+      <div class="spotify-embed">
+        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/6Rt7WNqxYGWxN9QrS7BGdf?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+      </div>
+      <div class="spotify-embed">
+        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/3gQgRRPxZdtH889WxQVzCF?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+      </div>
     </div>
   </main>
 
   <script>
-    // Wait for all images to load
-    Promise.all(Array.from(document.images).map(img => {
-      if (img.complete) return Promise.resolve();
-      return new Promise(resolve => { img.onload = resolve; });
-    })).then(() => {
-      document.querySelector('.portfolio-grid').classList.add('loaded');
+    // Wait for Spotify iframes to load
+    const spotifyGrid = document.querySelector('.spotify-grid');
+    const iframes = document.querySelectorAll('iframe');
+    let loadedIframes = 0;
+
+    iframes.forEach(iframe => {
+      iframe.addEventListener('load', () => {
+        loadedIframes++;
+        if (loadedIframes === iframes.length) {
+          spotifyGrid.classList.add('loaded');
+        }
+      });
     });
 
     // Navigation and transition handling
@@ -51,16 +90,21 @@
       
       link.addEventListener('click', (e) => {
         e.preventDefault();
-        const target = e.target;
-        const url = target.href;
+        const url = e.target.href;
         const pageTransition = document.querySelector('.page-transition');
         
-        // Start transition
-        pageTransition.classList.add('active');
+        // Fade out content
+        spotifyGrid.style.opacity = '0';
+        document.querySelector('.section-title').style.opacity = '0';
         
-        // Navigate after transition
+        // After content fades, show transition overlay
         setTimeout(() => {
-          window.location.href = url;
+          pageTransition.classList.add('active');
+          
+          // Navigate after transition
+          setTimeout(() => {
+            window.location.href = url;
+          }, 800);
         }, 300);
       });
     });
@@ -69,10 +113,16 @@
     document.querySelector('.logo').addEventListener('click', (e) => {
       e.preventDefault();
       const pageTransition = document.querySelector('.page-transition');
-      pageTransition.classList.add('active');
+      
+      // Fade out content
+      spotifyGrid.style.opacity = '0';
+      document.querySelector('.section-title').style.opacity = '0';
       
       setTimeout(() => {
-        window.location.href = e.target.href;
+        pageTransition.classList.add('active');
+        setTimeout(() => {
+          window.location.href = e.target.href;
+        }, 800);
       }, 300);
     });
   </script>
