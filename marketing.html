@@ -29,7 +29,7 @@
   <main class="main-content" role="main">
     <h1 class="section-title">Marketing Portfolio</h1>
     <div class="portfolio-grid">
-      <!-- Digital Marketing Items -->
+      <!-- Content items remain the same -->
       <article class="portfolio-item">
         <img src="assets/marketing/digital/black-belt-kombucha.png" alt="Blackbelt Kombucha Digital Marketing" loading="lazy">
       </article>
@@ -38,7 +38,6 @@
         <img src="assets/marketing/digital/paid-in-full-mockup.svg" alt="Paid in Full App Mockup" loading="lazy">
       </article>
 
-      <!-- Print Marketing Items -->
       <article class="portfolio-item">
         <img src="assets/marketing/print/business-cards.png" alt="Business Card Designs" loading="lazy">
       </article>
@@ -47,7 +46,6 @@
         <img src="assets/marketing/print/lynchburg-brochure.png" alt="Lynchburg Brochure Design" loading="lazy">
       </article>
 
-      <!-- Magazine Items -->
       <article class="portfolio-item">
         <img src="assets/marketing/haven-spread-1.png" alt="Haven Magazine Spread" loading="lazy">
       </article>
@@ -59,7 +57,22 @@
   </main>
 
   <script>
-    // Wait for all images to load
+    // Initial animations
+    function startSequentialAnimation() {
+      // First show the title
+      setTimeout(() => {
+        document.querySelector('.section-title').classList.add('visible');
+      }, 300);
+
+      // Then show each portfolio item one by one
+      document.querySelectorAll('.portfolio-item').forEach((item, index) => {
+        setTimeout(() => {
+          item.classList.add('visible');
+        }, 1000 + (index * 200)); // Start after title, then 200ms between each item
+      });
+    }
+
+    // Wait for all images to load before starting animations
     Promise.all(
       Array.from(document.images)
         .filter(img => !img.complete)
@@ -68,7 +81,7 @@
           img.onerror = resolve;
         }))
     ).then(() => {
-      document.querySelector('.portfolio-grid').classList.add('loaded');
+      startSequentialAnimation();
     });
 
     // Navigation handling
@@ -81,10 +94,8 @@
         const url = target.href;
         const theme = target.textContent.toLowerCase();
         
-        // Add fade-out class to trigger transition
         document.querySelector('.main-content').classList.add('fade-out');
         
-        // After content fades out, change background color and navigate
         setTimeout(() => {
           document.body.style.backgroundColor = getComputedStyle(document.documentElement)
             .getPropertyValue(`--${theme}-primary`).trim();
