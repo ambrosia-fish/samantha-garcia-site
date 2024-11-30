@@ -7,11 +7,13 @@
   <link href="https://fonts.cdnfonts.com/css/open-sauce-one" rel="stylesheet">
   <link href="https://fonts.cdnfonts.com/css/tenor-sans" rel="stylesheet">
   <link href="https://fonts.cdnfonts.com/css/amoera-2" rel="stylesheet">
-  <link href="css/styles.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
   <title>Marketing Portfolio - Samantha Garcia</title>
 </head>
-<body>
+<body class="marketing-theme">
   <a href="#main" class="skip-link">Skip to main content</a>
+  
+  <div class="page-transition"></div>
   
   <header class="header" role="banner">
     <div class="header-container">
@@ -20,7 +22,7 @@
       </a>
       <nav role="navigation" aria-label="Main navigation">
         <ul class="nav-links">
-          <li><a href="marketing.html" class="nav-link">Marketing</a></li>
+          <li><a href="marketing.html" class="nav-link active">Marketing</a></li>
           <li><a href="design.html" class="nav-link">Design</a></li>
           <li><a href="music.html" class="nav-link">Music</a></li>
         </ul>
@@ -29,7 +31,6 @@
   </header>
 
   <main id="main" class="main-content" role="main">
-    <h1 class="section-title">Marketing Portfolio</h1>
     <div class="portfolio-grid">
       <!-- Digital Marketing Items -->
       <article class="portfolio-item" data-title="Social Media Campaign" data-description="Brand development and social media strategy for Blackbelt Kombucha.">
@@ -60,56 +61,44 @@
     </div>
   </main>
 
-  <!-- Modal -->
-  <div class="modal" id="portfolio-modal">
-    <div class="modal-content">
-      <button class="modal-close" aria-label="Close modal">×</button>
-      <img class="modal-image" src="" alt="">
-      <div class="modal-info">
-        <h2 class="modal-title"></h2>
-        <p class="modal-description"></p>
-      </div>
-    </div>
-  </div>
-
-  <script src="js/main.js"></script>
   <script>
-    // Modal functionality
-    const modal = document.getElementById('portfolio-modal');
-    const modalImage = modal.querySelector('.modal-image');
-    const modalTitle = modal.querySelector('.modal-title');
-    const modalDescription = modal.querySelector('.modal-description');
-    const modalClose = modal.querySelector('.modal-close');
+    // Wait for all images to load
+    Promise.all(Array.from(document.images).map(img => {
+      if (img.complete) return Promise.resolve();
+      return new Promise(resolve => { img.onload = resolve; });
+    })).then(() => {
+      document.querySelector('.portfolio-grid').classList.add('loaded');
+    });
 
-    // Add click handlers to portfolio items
-    document.querySelectorAll('.portfolio-item').forEach(item => {
-      item.addEventListener('click', () => {
-        const img = item.querySelector('img');
-        modalImage.src = img.src;
-        modalImage.alt = img.alt;
-        modalTitle.textContent = item.dataset.title;
-        modalDescription.textContent = item.dataset.description;
-        modal.classList.add('active');
+    // Navigation and transition handling
+    document.querySelectorAll('.nav-link').forEach(link => {
+      if (link.classList.contains('active')) return;
+      
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const target = e.target;
+        const url = target.href;
+        const pageTransition = document.querySelector('.page-transition');
+        
+        // Start transition
+        pageTransition.classList.add('active');
+        
+        // Navigate after transition
+        setTimeout(() => {
+          window.location.href = url;
+        }, 300);
       });
     });
 
-    // Close modal
-    modalClose.addEventListener('click', () => {
-      modal.classList.remove('active');
-    });
-
-    // Close modal on outside click
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) {
-        modal.classList.remove('active');
-      }
-    });
-
-    // Close modal on escape key
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && modal.classList.contains('active')) {
-        modal.classList.remove('active');
-      }
+    // Logo click handling
+    document.querySelector('.logo').addEventListener('click', (e) => {
+      e.preventDefault();
+      const pageTransition = document.querySelector('.page-transition');
+      pageTransition.classList.add('active');
+      
+      setTimeout(() => {
+        window.location.href = e.target.href;
+      }, 300);
     });
   </script>
 </body>
