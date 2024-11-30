@@ -30,27 +30,19 @@
     <h1 class="section-title">Design Portfolio</h1>
     <div class="portfolio-grid">
       <article class="portfolio-item">
-        <img src="assets/design/app-mockups.png" alt="Mobile App Design Mockups" loading="lazy">
+        <img src="assets/design/haven-spread.png" alt="Haven Magazine Spread Design" loading="lazy">
       </article>
 
       <article class="portfolio-item">
-        <img src="assets/design/brand-identity.png" alt="Brand Identity Design" loading="lazy">
+        <img src="assets/design/paid-in-full.png" alt="Paid in Full Design" loading="lazy">
       </article>
 
       <article class="portfolio-item">
-        <img src="assets/design/ui-components.png" alt="UI Component Design" loading="lazy">
+        <img src="assets/design/lynchburg.png" alt="Lynchburg Brochure Design" loading="lazy">
       </article>
 
       <article class="portfolio-item">
-        <img src="assets/design/web-design.png" alt="Web Interface Design" loading="lazy">
-      </article>
-
-      <article class="portfolio-item">
-        <img src="assets/design/logo-collection.png" alt="Logo Design Collection" loading="lazy">
-      </article>
-
-      <article class="portfolio-item">
-        <img src="assets/design/publication.png" alt="Publication Design" loading="lazy">
+        <img src="assets/design/black-belt.png" alt="Black Belt Design" loading="lazy">
       </article>
     </div>
   </main>
@@ -58,20 +50,17 @@
   <script>
     // Initial animations
     function startSequentialAnimation() {
-      // First show the title
       setTimeout(() => {
         document.querySelector('.section-title').classList.add('visible');
       }, 300);
 
-      // Then show each portfolio item one by one
       document.querySelectorAll('.portfolio-item').forEach((item, index) => {
         setTimeout(() => {
           item.classList.add('visible');
-        }, 1000 + (index * 200)); // Start after title, then 200ms between each item
+        }, 1000 + (index * 200));
       });
     }
 
-    // Wait for all images to load before starting animations
     Promise.all(
       Array.from(document.images)
         .filter(img => !img.complete)
@@ -83,7 +72,6 @@
       startSequentialAnimation();
     });
 
-    // Navigation handling
     document.querySelectorAll('.nav-link').forEach(link => {
       if (link.classList.contains('active')) return;
       
@@ -106,7 +94,6 @@
       });
     });
 
-    // Home link handling
     document.querySelector('.logo').addEventListener('click', (e) => {
       e.preventDefault();
       const url = e.target.href;
