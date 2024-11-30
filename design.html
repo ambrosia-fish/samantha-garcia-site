@@ -56,7 +56,22 @@
   </main>
 
   <script>
-    // Wait for all images to load
+    // Initial animations
+    function startSequentialAnimation() {
+      // First show the title
+      setTimeout(() => {
+        document.querySelector('.section-title').classList.add('visible');
+      }, 300);
+
+      // Then show each portfolio item one by one
+      document.querySelectorAll('.portfolio-item').forEach((item, index) => {
+        setTimeout(() => {
+          item.classList.add('visible');
+        }, 1000 + (index * 200)); // Start after title, then 200ms between each item
+      });
+    }
+
+    // Wait for all images to load before starting animations
     Promise.all(
       Array.from(document.images)
         .filter(img => !img.complete)
@@ -65,7 +80,7 @@
           img.onerror = resolve;
         }))
     ).then(() => {
-      document.querySelector('.portfolio-grid').classList.add('loaded');
+      startSequentialAnimation();
     });
 
     // Navigation handling
