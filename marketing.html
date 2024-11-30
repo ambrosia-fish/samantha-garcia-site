@@ -11,10 +11,6 @@
   <title>Marketing Portfolio - Samantha Garcia</title>
 </head>
 <body class="marketing-theme">
-  <a href="#main" class="skip-link">Skip to main content</a>
-  
-  <div class="page-transition"></div>
-  
   <header class="header" role="banner">
     <div class="header-container">
       <a href="index.html" class="logo" aria-label="Home">
@@ -30,134 +26,90 @@
     </div>
   </header>
 
-  <main id="main" class="main-content" role="main">
+  <main class="main-content" role="main">
     <h1 class="section-title">Marketing Portfolio</h1>
     <div class="portfolio-grid">
       <!-- Digital Marketing Items -->
-      <article class="portfolio-item" data-title="Social Media Campaign" data-description="Brand development and social media strategy for Blackbelt Kombucha.">
+      <article class="portfolio-item">
         <img src="assets/marketing/digital/black-belt-kombucha.png" alt="Blackbelt Kombucha Digital Marketing" loading="lazy">
       </article>
 
-      <article class="portfolio-item" data-title="App Design Marketing" data-description="Mobile app marketing material and mockup design.">
+      <article class="portfolio-item">
         <img src="assets/marketing/digital/paid-in-full-mockup.svg" alt="Paid in Full App Mockup" loading="lazy">
       </article>
 
       <!-- Print Marketing Items -->
-      <article class="portfolio-item" data-title="Business Card Collection" data-description="Series of premium business card designs for various clients.">
+      <article class="portfolio-item">
         <img src="assets/marketing/print/business-cards.png" alt="Business Card Designs" loading="lazy">
       </article>
 
-      <article class="portfolio-item" data-title="Brochure Design" data-description="Comprehensive brochure design for Lynchburg property showcase.">
+      <article class="portfolio-item">
         <img src="assets/marketing/print/lynchburg-brochure.png" alt="Lynchburg Brochure Design" loading="lazy">
       </article>
 
       <!-- Magazine Items -->
-      <article class="portfolio-item" data-title="Haven Magazine Layout" data-description="Editorial design and layout for Haven Magazine feature spread.">
+      <article class="portfolio-item">
         <img src="assets/marketing/haven-spread-1.png" alt="Haven Magazine Spread" loading="lazy">
       </article>
 
-      <article class="portfolio-item" data-title="Editorial Design" data-description="Lifestyle section layout and typography for Haven Magazine.">
+      <article class="portfolio-item">
         <img src="assets/marketing/haven-spread-2.png" alt="Haven Magazine Editorial" loading="lazy">
       </article>
     </div>
   </main>
 
-  <!-- Modal -->
-  <div class="modal" id="portfolio-modal">
-    <div class="modal-content">
-      <button class="modal-close" aria-label="Close modal">×</button>
-      <img class="modal-image" src="" alt="">
-      <div class="modal-info">
-        <h2 class="modal-title"></h2>
-        <p class="modal-description"></p>
-      </div>
-    </div>
-  </div>
-
   <script>
     // Wait for all images to load
-    Promise.all(Array.from(document.images).filter(img => !img.complete).map(img => {
-      return new Promise(resolve => {
-        img.onload = resolve;
-        img.onerror = resolve; // Handle any errors gracefully
-      });
-    })).then(() => {
+    Promise.all(
+      Array.from(document.images)
+        .filter(img => !img.complete)
+        .map(img => new Promise(resolve => {
+          img.onload = resolve;
+          img.onerror = resolve;
+        }))
+    ).then(() => {
       document.querySelector('.portfolio-grid').classList.add('loaded');
     });
 
-    // Modal functionality
-    const modal = document.getElementById('portfolio-modal');
-    const modalImage = modal.querySelector('.modal-image');
-    const modalTitle = modal.querySelector('.modal-title');
-    const modalDescription = modal.querySelector('.modal-description');
-    const modalClose = modal.querySelector('.modal-close');
-
-    document.querySelectorAll('.portfolio-item').forEach(item => {
-      item.addEventListener('click', () => {
-        const img = item.querySelector('img');
-        modalImage.src = img.src;
-        modalImage.alt = img.alt;
-        modalTitle.textContent = item.dataset.title;
-        modalDescription.textContent = item.dataset.description;
-        modal.classList.add('active');
-      });
-    });
-
-    modalClose.addEventListener('click', () => {
-      modal.classList.remove('active');
-    });
-
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) {
-        modal.classList.remove('active');
-      }
-    });
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && modal.classList.contains('active')) {
-        modal.classList.remove('active');
-      }
-    });
-
-    // Navigation and transition handling
+    // Navigation handling
     document.querySelectorAll('.nav-link').forEach(link => {
       if (link.classList.contains('active')) return;
       
       link.addEventListener('click', (e) => {
         e.preventDefault();
-        const url = e.target.href;
-        const pageTransition = document.querySelector('.page-transition');
+        const target = e.target;
+        const url = target.href;
+        const theme = target.textContent.toLowerCase();
         
-        // Fade out content
-        document.querySelector('.portfolio-grid').style.opacity = '0';
-        document.querySelector('.section-title').style.opacity = '0';
+        // Add fade-out class to trigger transition
+        document.querySelector('.main-content').classList.add('fade-out');
         
-        // After content fades, show transition overlay
+        // After content fades out, change background color and navigate
         setTimeout(() => {
-          pageTransition.classList.add('active');
+          document.body.style.backgroundColor = getComputedStyle(document.documentElement)
+            .getPropertyValue(`--${theme}-primary`).trim();
           
-          // Navigate after transition
           setTimeout(() => {
             window.location.href = url;
-          }, 800);
+          }, 300);
         }, 300);
       });
     });
 
-    // Logo click handling
+    // Home link handling
     document.querySelector('.logo').addEventListener('click', (e) => {
       e.preventDefault();
-      const pageTransition = document.querySelector('.page-transition');
+      const url = e.target.href;
       
-      // Fade out content
-      document.querySelector('.portfolio-grid').style.opacity = '0';
-      document.querySelector('.section-title').style.opacity = '0';
+      document.querySelector('.main-content').classList.add('fade-out');
       
       setTimeout(() => {
-        pageTransition.classList.add('active');
+        document.body.style.backgroundColor = getComputedStyle(document.documentElement)
+          .getPropertyValue('--home-primary').trim();
+        
         setTimeout(() => {
-          window.location.href = e.target.href;
-        }, 800);
+          window.location.href = url;
+        }, 300);
       }, 300);
     });
   </script>
