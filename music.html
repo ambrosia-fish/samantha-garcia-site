@@ -29,32 +29,36 @@
   <main class="main-content" role="main">
     <h1 class="section-title">Music Portfolio</h1>
     <div class="spotify-grid">
-      <div class="spotify-embed">
+      <div class="portfolio-item">
         <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/5VtxQ8oZn8ENHJ3CKhH4Mn?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
       </div>
-      <div class="spotify-embed">
+      <div class="portfolio-item">
         <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/6Rt7WNqxYGWxN9QrS7BGdf?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
       </div>
-      <div class="spotify-embed">
+      <div class="portfolio-item">
         <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/3gQgRRPxZdtH889WxQVzCF?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
       </div>
     </div>
   </main>
 
   <script>
-    // Wait for Spotify iframes to load
-    const spotifyGrid = document.querySelector('.spotify-grid');
-    const iframes = document.querySelectorAll('iframe');
-    let loadedIframes = 0;
+    // Initial animations
+    function startSequentialAnimation() {
+      // First show the title
+      setTimeout(() => {
+        document.querySelector('.section-title').classList.add('visible');
+      }, 300);
 
-    iframes.forEach(iframe => {
-      iframe.addEventListener('load', () => {
-        loadedIframes++;
-        if (loadedIframes === iframes.length) {
-          spotifyGrid.classList.add('loaded');
-        }
+      // Then show each portfolio item one by one
+      document.querySelectorAll('.portfolio-item').forEach((item, index) => {
+        setTimeout(() => {
+          item.classList.add('visible');
+        }, 1000 + (index * 200)); // Start after title, then 200ms between each item
       });
-    });
+    }
+
+    // Start animations after a short delay to ensure Spotify embeds are ready
+    setTimeout(startSequentialAnimation, 500);
 
     // Navigation handling
     document.querySelectorAll('.nav-link').forEach(link => {
