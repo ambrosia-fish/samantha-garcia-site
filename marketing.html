@@ -7,7 +7,7 @@
   <link href="https://fonts.cdnfonts.com/css/open-sauce-one" rel="stylesheet">
   <link href="https://fonts.cdnfonts.com/css/tenor-sans" rel="stylesheet">
   <link href="https://fonts.cdnfonts.com/css/amoera-2" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <link href="css/styles.css" rel="stylesheet">
   <title>Marketing Portfolio - Samantha Garcia</title>
 </head>
 <body class="marketing-theme">
@@ -31,6 +31,7 @@
   </header>
 
   <main id="main" class="main-content" role="main">
+    <h1 class="section-title">Marketing Portfolio</h1>
     <div class="portfolio-grid">
       <!-- Digital Marketing Items -->
       <article class="portfolio-item" data-title="Social Media Campaign" data-description="Brand development and social media strategy for Blackbelt Kombucha.">
@@ -61,13 +62,61 @@
     </div>
   </main>
 
+  <!-- Modal -->
+  <div class="modal" id="portfolio-modal">
+    <div class="modal-content">
+      <button class="modal-close" aria-label="Close modal">×</button>
+      <img class="modal-image" src="" alt="">
+      <div class="modal-info">
+        <h2 class="modal-title"></h2>
+        <p class="modal-description"></p>
+      </div>
+    </div>
+  </div>
+
   <script>
     // Wait for all images to load
-    Promise.all(Array.from(document.images).map(img => {
-      if (img.complete) return Promise.resolve();
-      return new Promise(resolve => { img.onload = resolve; });
+    Promise.all(Array.from(document.images).filter(img => !img.complete).map(img => {
+      return new Promise(resolve => {
+        img.onload = resolve;
+        img.onerror = resolve; // Handle any errors gracefully
+      });
     })).then(() => {
       document.querySelector('.portfolio-grid').classList.add('loaded');
+    });
+
+    // Modal functionality
+    const modal = document.getElementById('portfolio-modal');
+    const modalImage = modal.querySelector('.modal-image');
+    const modalTitle = modal.querySelector('.modal-title');
+    const modalDescription = modal.querySelector('.modal-description');
+    const modalClose = modal.querySelector('.modal-close');
+
+    document.querySelectorAll('.portfolio-item').forEach(item => {
+      item.addEventListener('click', () => {
+        const img = item.querySelector('img');
+        modalImage.src = img.src;
+        modalImage.alt = img.alt;
+        modalTitle.textContent = item.dataset.title;
+        modalDescription.textContent = item.dataset.description;
+        modal.classList.add('active');
+      });
+    });
+
+    modalClose.addEventListener('click', () => {
+      modal.classList.remove('active');
+    });
+
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.classList.remove('active');
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('active')) {
+        modal.classList.remove('active');
+      }
     });
 
     // Navigation and transition handling
@@ -76,16 +125,21 @@
       
       link.addEventListener('click', (e) => {
         e.preventDefault();
-        const target = e.target;
-        const url = target.href;
+        const url = e.target.href;
         const pageTransition = document.querySelector('.page-transition');
         
-        // Start transition
-        pageTransition.classList.add('active');
+        // Fade out content
+        document.querySelector('.portfolio-grid').style.opacity = '0';
+        document.querySelector('.section-title').style.opacity = '0';
         
-        // Navigate after transition
+        // After content fades, show transition overlay
         setTimeout(() => {
-          window.location.href = url;
+          pageTransition.classList.add('active');
+          
+          // Navigate after transition
+          setTimeout(() => {
+            window.location.href = url;
+          }, 800);
         }, 300);
       });
     });
@@ -94,10 +148,16 @@
     document.querySelector('.logo').addEventListener('click', (e) => {
       e.preventDefault();
       const pageTransition = document.querySelector('.page-transition');
-      pageTransition.classList.add('active');
+      
+      // Fade out content
+      document.querySelector('.portfolio-grid').style.opacity = '0';
+      document.querySelector('.section-title').style.opacity = '0';
       
       setTimeout(() => {
-        window.location.href = e.target.href;
+        pageTransition.classList.add('active');
+        setTimeout(() => {
+          window.location.href = e.target.href;
+        }, 800);
       }, 300);
     });
   </script>
